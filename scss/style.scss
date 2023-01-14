@@ -98,7 +98,150 @@ canvas{
 
 }
 
+#controller{
+    //border:1px solid white;
+    width:25rem;
+    height:25rem;
+    position: relative;
+    bottom:2rem;
+    display:grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-rows: 1fr 1fr 1fr;
+    grid-gap: 20px;
+    justify-items:center;
+    align-items: center;
+    display:none;
+    
+
+    #up,#left,#down,#right{
+        width:6rem;
+        height:6rem;
+        background-color: white;
+        display:flex;
+        align-items: center;
+        justify-content: center;
+        font-size:5rem;
+    }
+    #up{
+        grid-column: 2;
+        grid-row:1;
+    }
+    #left{
+        grid-column: 1;
+        grid-row:2;
+    }
+    #right{
+        grid-column: 3;
+        grid-row:2;
+    }
+    #down{
+        grid-column: 2;
+        grid-row:3;
+    }
+}
+
+
 @keyframes bump {
     0%{transform: translateY(7px)};
     100%{transform: translateY(-7px)};
+}   
+@media(max-width:1500px){
+    body{
+        padding-top:1rem !important;
+    }
+    #controller{
+        width:10rem;
+        height:10rem;
+        div{
+            width:3rem !important;
+            height:3rem !important;
+        }
+    }
+}
+@media (max-width:1025px){
+    body{
+        justify-content: start;
+        padding-top:5rem;
+    }
+    #menu,canvas{
+        width:40rem;
+        height:40rem;
+    }
+    #score{
+        bottom:40rem;
+    }
+    #gameOverText{
+        bottom:20rem;
+        font-size:3rem;
+    }
+    #controller{
+        display:inline-grid;
+        position: relative;
+        
+    }
+}
+
+@media (max-width:800px){
+    body{
+        padding-top:0rem !important;
+    }
+    #menu,canvas{
+        width:35rem;
+        height:35rem;
+    }
+    #score{
+        bottom:35rem;
+    }
+    #gameOverText{
+        bottom:22rem !important;
+        font-size:2rem;
+    }
+    #controller{
+        display:inline-grid;
+        position: relative;
+        width:10rem !important;
+        height:10rem !important;
+    }
+}
+
+@media (max-width:400px){
+    body{
+        padding-top: 0;
+    }
+    canvas,#menu{
+        width:20rem;
+        height:20rem;
+    }
+    #menu{
+        gap:0rem;
+    }
+    #title{
+        font-size:2rem !important;
+    }
+    #highScore{
+        font-size:1rem !important;
+    }
+    #startGame{
+        font-size:1.5rem !important;
+    }
+    #difficulty{
+        font-size:0.8rem !important;
+    }
+    #controller{
+        width:10rem;
+        height:10rem;
+        position: relative;
+        left:-1rem;
+    }
+    #up,#left,#down,#right{
+        width:3rem !important;
+        height:3rem !important;
+    }
+    #score{
+        bottom:20rem;
+    }
+    #gameOverText{
+        bottom:30rem !important;
+        font-size:1.8rem;
+    }
 }

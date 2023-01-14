@@ -10,6 +10,11 @@ const hard = document.getElementById("hard");
 const impossible = document.getElementById("impossible");
 const highScoreText = document.getElementById("highScore");
 
+const upButton = document.getElementById("up");
+const downButton = document.getElementById("down");
+const leftButton = document.getElementById("left");
+const rightButton = document.getElementById("right");
+
 let snakeHighScore = 0;
 
 function getHighScore(){
@@ -20,19 +25,12 @@ function getHighScore(){
     }
     highScoreText.innerText = `Highscore: ${snakeHighScore}`;
 }
-
-document.addEventListener("DOMContentLoaded",(e)=>{
-    song.play();
-})
-
-getHighScore();
-
 const song = new Audio("./Granvals.mp3");
-// song.play();
 song.addEventListener("ended",()=>{
     song.play();
 });
 
+getHighScore();
 
 let speed = 7;
 
@@ -60,11 +58,11 @@ class SnakePart{
 
 
 startGame.addEventListener("click",()=>{
-    if(easy.classList.contains("selected")){speed=3;}
-    if(normal.classList.contains("selected")){speed=6;}
-    if(hard.classList.contains("selected")){speed=9;}
-    if(impossible.classList.contains("selected")){speed=18;}
-
+    if(easy.classList.contains("selected")){speed=5;}
+    if(normal.classList.contains("selected")){speed=10;}
+    if(hard.classList.contains("selected")){speed=15;}
+    if(impossible.classList.contains("selected")){speed=25;}
+    song.play();
 
 
     score = 0;
@@ -79,6 +77,21 @@ startGame.addEventListener("click",()=>{
     menu.style.display = "none";
     canvas.style.display ="inline-flex";
     document.body.addEventListener('keydown',keyDown);
+
+    upButton.addEventListener("click",()=>{
+        keyDown("up");
+    });
+    downButton.addEventListener("click",()=>{
+        keyDown("down");
+    });
+    leftButton.addEventListener("click",()=>{
+        keyDown("left");
+    });
+    rightButton.addEventListener("click",()=>{
+        keyDown("right");
+    });
+
+
     drawGame();
 })
 
@@ -180,7 +193,7 @@ function checkAppleCollision(){
 
         tailLength++;
         score++;
-        speed+=0.5;
+        speed+=0.25;
         scoreSound.play();
     }
 }
@@ -234,6 +247,19 @@ function isGameOver(){
         gameOverText.style.opacity = 100;
         document.body.removeEventListener("keydown",keyDown);
 
+        upButton.removeEventListener("click",()=>{
+            keyDown("up");
+        });
+        downButton.removeEventListener("click",()=>{
+            keyDown("down");
+        });
+        leftButton.removeEventListener("click",()=>{
+            keyDown("left");
+        });
+        rightButton.removeEventListener("click",()=>{
+            keyDown("right");
+        });
+
         if(score > snakeHighScore){
             snakeHighScore = score;
             localStorage.setItem("snakeHighScore",JSON.stringify(snakeHighScore));
@@ -260,25 +286,25 @@ function returnToMenu(){
 
 function keyDown(e){
     //uparrow
-    if(e.keyCode == 38 || e.keyCode == 87){
+    if(e.keyCode == 38 || e.keyCode == 87 || e == "up"){
         if(yVelocity == 1){return;}
         yVelocity = -1;
         xVelocity = 0;
     }
     //downarrow
-    if(e.keyCode == 40 || e.keyCode == 83){
+    if(e.keyCode == 40 || e.keyCode == 83 || e == "down"){
         if(yVelocity == -1){return;}
         yVelocity = 1;
         xVelocity = 0;
     }
     //leftarrow
-    if(e.keyCode == 37 || e.keyCode == 65){
+    if(e.keyCode == 37 || e.keyCode == 65 || e =="left"){
         if(xVelocity == 1){return;}
         yVelocity = 0;
         xVelocity = -1;
     }
     //rightarrow
-    if(e.keyCode == 39 || e.keyCode == 68){
+    if(e.keyCode == 39 || e.keyCode == 68 || e == "right"){
         if(xVelocity == -1){return;}
         yVelocity = 0;
         xVelocity = 1;
