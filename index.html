@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
+
+    <title>Snake</title>
+</head>
+<body>
+    <div id="menu">
+        <div id="titleDiv">
+            <div id="title">Snake</div>
+            <div id="highScore">HighScore:</div>
+        </div>
+        
+        <div id="startGame">New Game</div>
+        <div id="difficulty">
+            <span>Difficulty:</span>
+            <span id="easy" class="selected">Easy</span>
+            <span id="normal">Normal</span>
+            <span id="hard">Hard</span>
+            <span id="impossible">Impossible</span>
+        </div>
+    </div>
+
+    <canvas id="game" width="400" height="400"></canvas>
+    <div id="score">0</div>
+    <div id="gameOverText">Game over!</div>
+    
+
+    <script src="./js/main.js"></script>
+</body>
+</html>
