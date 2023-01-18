@@ -236,25 +236,24 @@ function clearScreen(){
     ctx.fillRect(0,0,canvas.width,canvas.height);
 }
 
+
+function generateNewApple(){
+    appleX = Math.floor(Math.random()*tileCount);
+    appleY = Math.floor(Math.random()*tileCount);
+
+        for(let i = 0; i<snakeParts.length; i++){
+
+            if(snakeParts[i].x == appleX && snakeParts[i].y == appleY){
+                console.log("regenerated");
+                generateNewApple();
+            }
+        }
+}
+
 function checkAppleCollision(){
     if(appleX === headX && appleY === headY){
 
-        appleX = Math.floor(Math.random()*tileCount);
-        appleY = Math.floor(Math.random()*tileCount);
-        let valid = false;
-        do{
-            for(let i = 0; i<snakeParts.length; i++){
-                let contains = false;
-                if(snakeParts[i].x == appleX && snakeParts[i].y == appleY){
-                    appleX = Math.floor(Math.random()*tileCount);
-                    appleY = Math.floor(Math.random()*tileCount);
-                    contains = true;
-                    console.log("regenerated")
-                }
-                if(!contains){valid = true;}
-            }
-        }while(!valid)
-
+        generateNewApple();
         tailLength++;
         score++;
         speed+=0.25;
