@@ -20,8 +20,8 @@ h1 {
 }
 
 #menu, canvas {
-  width: 90vw;
-  height: 90vw;
+  width: 85vw;
+  height: 85vw;
 }
 
 canvas {
@@ -64,7 +64,7 @@ canvas {
   bottom: 2rem;
 }
 #menu #titleDiv #title {
-  font-size: 10vw;
+  font-size: 8vw;
   color: #15220e;
 }
 #menu #titleDiv #highScore {
@@ -98,8 +98,8 @@ canvas {
 #controller {
   position: relative;
   top: 1vh;
-  width: 15rem;
-  height: 15rem;
+  width: 10rem;
+  height: 10rem;
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
   grid-template-rows: 1fr 1fr 1fr;
@@ -108,8 +108,8 @@ canvas {
   align-items: center;
 }
 #controller #up, #controller #left, #controller #down, #controller #right, #controller #enter {
-  width: 4rem;
-  height: 4rem;
+  width: 2.2rem;
+  height: 2.2rem;
   background-color: white;
   display: flex;
   align-items: center;
