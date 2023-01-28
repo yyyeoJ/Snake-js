@@ -9,7 +9,6 @@ body{
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    gap:2rem;
     height: 100vh;
     background-color: #3C3F52;
     font-family: 'Press Start 2P',cursive;
@@ -19,28 +18,30 @@ h1{
     color:#15220e;
 }
 
+#menu,canvas{
+    width:95vw;
+    height: 95vw;
+}
+
 canvas{
-    
-    border: 0.4rem solid #15220e;
-    width:30rem;
-    height: 30rem;    
+    border: 0.4rem solid #15220e;   
     display: none;
 }
 #score{
-    font-size: 2rem;
-    position: relative;
-    bottom:31rem;
+    font-size: 5vw;
+    position: absolute;
+    top:20vh;
     
     color:#15220e68;
 }
 #gameOverText{
     position: absolute;
+    top:25vh;
     color:#15220e;
-    font-size: 2.5rem;
+    font-size: 5vw;
     bottom:55vh;
     opacity: 0;
 }
-
 
 #menu{
     display:flex;
@@ -48,8 +49,6 @@ canvas{
     align-items: center;
     justify-content: center;
     gap:1rem;
-    width: 30rem;
-    height: 30rem;
     border: 0.4rem solid #15220e;
     background-color: #4e7d33;
     z-index: 1;
@@ -63,19 +62,18 @@ canvas{
         bottom:2rem;
 
         #title{
-            font-size:3rem;
+            font-size:10vw;
             color:#15220e;
         }
         #highScore{
-            font-size: 1.5rem;
+            font-size: 5vw;
             color:#15220e;
         }
     }
     #startGame{
         color:#15220e;
-        font-size: 2.5rem;
+        font-size: 6vw;
         cursor: pointer;
-        padding-bottom: 1.5rem;
         
     }
     .selectedMenu{
@@ -86,7 +84,7 @@ canvas{
         flex-direction:column;
         align-items: center;
         gap:0.5rem;
-        font-size:1.2rem;
+        font-size:3.5vw;
         color:#15220e;
 
         .selectedDifficulty{
@@ -102,23 +100,21 @@ canvas{
 }
 
 #controller{
-    //border:1px solid white;
-    width:25rem;
-    height:25rem;
     position: relative;
-    bottom:2rem;
+    top:1vh;
+    width:15rem;
+    height:15rem;
     display:grid;
     grid-template-columns: 1fr 1fr 1fr;
     grid-template-rows: 1fr 1fr 1fr;
     grid-gap: 20px;
     justify-items:center;
     align-items: center;
-    display:none;
     
 
     #up,#left,#down,#right,#enter{
-        width:6rem;
-        height:6rem;
+        width:4rem;
+        height:4rem;
         background-color: white;
         display:flex;
         align-items: center;
@@ -151,104 +147,42 @@ canvas{
 @keyframes bump {
     0%{transform: translateY(5px)};
     100%{transform: translateY(-5px)};
-}   
-@media(max-width:1500px){
+}  
+
+@media (min-width:1025px) {
     body{
-        padding-top:1rem !important;
+        overflow: hidden;
     }
     #controller{
-        width:10rem;
-        height:10rem;
-        div{
-            width:3rem !important;
-            height:3rem !important;
-        }
-    }
-}
-@media (max-width:1025px){
-    body{
-        justify-content: start;
-        padding-top:5rem;
+        display:none;
     }
     #menu,canvas{
-        width:40rem;
-        height:40rem;
+        width:40rem !important;
+        height: 40rem !important;
     }
-    #score{
-        bottom:40rem;
-    }
-    #gameOverText{
-        bottom:20rem;
-        font-size:3rem;
-    }
-    #controller{
-        display:inline-grid;
-        position: relative;
-        
-    }
-}
-
-@media (max-width:800px){
-    body{
-        padding-top:0rem !important;
-    }
-    #menu,canvas{
-        width:35rem;
-        height:35rem;
-    }
-    #score{
-        bottom:35rem;
-    }
-    #gameOverText{
-        bottom:22rem !important;
-        font-size:2rem;
-    }
-    #controller{
-        display:inline-grid;
-        position: relative;
-        width:10rem !important;
-        height:10rem !important;
-    }
-}
-
-@media (max-width:400px){
-    body{
-        padding-top: 0;
-    }
-    canvas,#menu{
-        width:20rem;
-        height:20rem;
-    }
-    #menu{
-        gap:0rem;
+    #titleDiv{
+        font-size:5rem !important;
     }
     #title{
-        font-size:2rem !important;
+        font-size:3rem !important;
     }
     #highScore{
-        font-size:1rem !important;
-    }
-    #startGame{
         font-size:1.5rem !important;
     }
+    #startGame{
+        font-size: 3rem !important;
+        padding-bottom:2rem !important;
+    }
     #difficulty{
-        font-size:0.8rem !important;
-    }
-    #controller{
-        width:10rem;
-        height:10rem;
-        position: relative;
-        left:-1rem;
-    }
-    #up,#left,#down,#right{
-        width:3rem !important;
-        height:3rem !important;
+        font-size:1.5rem !important;
     }
     #score{
-        bottom:20rem;
+        top:25vh;
+        font-size:3rem;
     }
     #gameOverText{
-        bottom:30rem !important;
-        font-size:1.8rem;
+        font-size:2.5rem;
+        top:40vh;
     }
+   
 }
