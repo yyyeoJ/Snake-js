@@ -6,6 +6,7 @@
 
 body{
     display:flex;
+    position: relative;
     flex-direction: column;
     align-items: center;
     justify-content: center;
@@ -21,26 +22,45 @@ h1{
 #menu,canvas{
     width:85vw;
     height: 85vw;
+    position: relative;
 }
 
 canvas{
     border: 0.4rem solid #15220e;   
     display: none;
 }
+
+#canvasContainer{
+    display:flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    position: relative;
+    display:none;
+}
+
 #score{
     font-size: 5vw;
     position: absolute;
-    top:20vh;
-    
+    bottom:80%;
+    text-align: center;
     color:#15220e68;
 }
 #gameOverText{
+    border:#15220e 0.3rem solid;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #4e7d33;
     position: absolute;
-    top:25vh;
+    bottom:40%;
+    height: 4rem;
+    padding-left: 1rem;
+    padding-right: 1rem;
     color:#15220e;
     font-size: 5vw;
-    bottom:55vh;
     opacity: 0;
+    animation: bump 0.6s infinite ease alternate;
 }
 
 #menu{
@@ -101,7 +121,7 @@ canvas{
 
 #controller{
     position: relative;
-    top:1vh;
+    top:5%;
     width:10rem;
     height:10rem;
     display:grid;
@@ -153,6 +173,7 @@ canvas{
 @media (min-width:1025px) {
     body{
         overflow: hidden;
+        position: relative;
     }
     #controller{
         display:none;
@@ -178,12 +199,11 @@ canvas{
         font-size:1.5rem !important;
     }
     #score{
-        top:25vh;
         font-size:3rem;
+        bottom:70%;
     }
     #gameOverText{
         font-size:2.5rem;
-        top:40vh;
     }
    
 }

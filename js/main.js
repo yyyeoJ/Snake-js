@@ -15,6 +15,7 @@ const downButton = document.getElementById("down");
 const leftButton = document.getElementById("left");
 const rightButton = document.getElementById("right");
 const enterButton = document.getElementById("enter");
+const canvasContainer = document.getElementById("canvasContainer");
 
 //variables
 const song = new Audio("./Granvals.mp3");
@@ -161,7 +162,9 @@ function startGame(){
     appleY = 5;
     xVelocity = 0;
     yVelocity = 0;
+
     menu.style.display = "none";
+    canvasContainer.style.display = "flex";
     canvas.style.display ="inline-flex";
     enterButton.removeEventListener("click",enterMenu);
     document.body.removeEventListener("keydown",keyDownMenu);
@@ -320,6 +323,13 @@ function isGameOver(){
         gameOverText.style.opacity = 100;
         document.body.removeEventListener("keydown",keyDownGame);
 
+        startGameButton.classList.add("selectedMenu")
+        easy.classList.remove("selectedMenu")
+        normal.classList.remove("selectedMenu")
+        hard.classList.remove("selectedMenu")
+        impossible.classList.remove("selectedMenu")
+
+
         upButton.removeEventListener("click",()=>{
             keyDownGame("up");
         });
@@ -340,7 +350,7 @@ function isGameOver(){
         }
         enterButton.addEventListener("click",resetGame);
         document.body.addEventListener("keydown",(e)=>{
-            if(e.keyCode == 32){
+            if(e.code === "Space"){
                 resetGame();
             }
         });
@@ -360,6 +370,7 @@ function returnToMenu(){
     
     canvas.style.display ="none";
     menu.style.display = "inline-flex";
+    canvasContainer.style.display = "inline-flex"
     gameOverText.style.opacity = 0;
     document.body.removeEventListener("keydown",returnToMenu);
     enterButton.removeEventListener("click",returnToMenu);
