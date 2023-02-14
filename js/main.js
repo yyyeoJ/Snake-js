@@ -33,8 +33,14 @@ let appleX = 5;
 let appleY = 5;
 let xVelocity =0;
 let yVelocity =0;
-let snakeHighScore = 0;
 let score = 0;
+let snakeHighScoreEasy = 0
+let snakeHighScoreNormal = 0
+let snakeHighScoreHard = 0
+let snakeHighScoreImpossible = 0
+let snakeHighScore = 0
+
+
 
 class SnakePart{
     constructor(x,y){
@@ -44,12 +50,58 @@ class SnakePart{
 }
 
 function getHighScore(){
-    if(!localStorage.getItem("snakeHighScore")){
-        let snakeHighScore = 0;
+
+    if(!localStorage.getItem("snakeHighScoreEasy")){
+        snakeHighScoreEasy = 0;
+        if(score > snakeHighScoreEasy && easy.classList.contains("selectedDifficulty")){
+            snakeHighScoreEasy = score;
+            localStorage.setItem("snakeHighScoreEasy",JSON.stringify(snakeHighScoreEasy));
+            highScoreText.innerText = `Highscore: ${snakeHighScoreEasy}`;
+        }
     }else{
-        snakeHighScore = JSON.parse(localStorage.getItem("snakeHighScore"));
+        snakeHighScoreEasy = JSON.parse(localStorage.getItem("snakeHighScoreEasy"));
     }
-    highScoreText.innerText = `Highscore: ${snakeHighScore}`;
+    if(!localStorage.getItem("snakeHighScoreNormal")){
+        snakeHighScoreNormal = 0;
+        if(score > snakeHighScoreNormal && normal.classList.contains("selectedDifficulty")){
+            snakeHighScoreNormal = score
+            localStorage.setItem("snakeHighScoreNormal",JSON.stringify(snakeHighScoreNormal));
+            highScoreText.innerText = `Highscore: ${snakeHighScoreNormal}`;
+        }
+    }else{
+        snakeHighScoreNormal = JSON.parse(localStorage.getItem("snakeHighScoreNormal"));
+    }
+    if(!localStorage.getItem("snakeHighScoreHard")){
+        snakeHighScoreHard = 0;
+        if(score > snakeHighScoreHard && hard.classList.contains("selectedDifficulty")){
+            snakeHighScoreHard = score;
+            localStorage.setItem("snakeHighScoreHard",JSON.stringify(snakeHighScoreHard));
+            highScoreText.innerText = `Highscore: ${snakeHighScoreHard}`;
+        }
+    }else{
+        snakeHighScoreHard = JSON.parse(localStorage.getItem("snakeHighScoreHard"));
+    }
+    if(!localStorage.getItem("snakeHighScoreImpossible")){
+        snakeHighScoreImpossible = 0;
+        if(score > snakeHighScoreImpossible && impossible.classList.contains("selectedDifficulty")){
+            snakeHighScoreImpossible = score;
+            localStorage.setItem("snakeHighScoreImpossible",JSON.stringify(snakeHighScoreImpossible));
+            highScoreText.innerText = `Highscore: ${snakeHighScoreImpossible}`;
+        }
+    }else{
+        snakeHighScoreImpossible = JSON.parse(localStorage.getItem("snakeHighScoreImpossible"));
+    }
+
+    if(easy.classList.contains("selectedDifficulty")){
+        highScoreText.innerText = `Highscore: ${snakeHighScoreEasy}`;
+    }else if(normal.classList.contains("selectedDifficulty")){
+        highScoreText.innerText = `Highscore: ${snakeHighScoreNormal}`;
+    }else if(hard.classList.contains("selectedDifficulty")){
+        highScoreText.innerText = `Highscore: ${snakeHighScoreHard}`;
+    }else if(impossible.classList.contains("selectedDifficulty")){
+        highScoreText.innerText = `Highscore: ${snakeHighScoreImpossible}`;
+    }
+
 }
 getHighScore();
 
@@ -118,25 +170,28 @@ function enterMenu(){
         startGame();
     }else
     if(easy.classList.contains("selectedMenu")){
-        //repeated code, add function
+        highScoreText.innerText = `Highscore: ${snakeHighScoreEasy}`;
         easy.classList.add("selectedDifficulty");
         normal.classList.remove("selectedDifficulty");
         hard.classList.remove("selectedDifficulty");
         impossible.classList.remove("selectedDifficulty");
     }else
     if(normal.classList.contains("selectedMenu")){
+        highScoreText.innerText = `Highscore: ${snakeHighScoreNormal}`;
         easy.classList.remove("selectedDifficulty");
         normal.classList.add("selectedDifficulty");
         hard.classList.remove("selectedDifficulty");
         impossible.classList.remove("selectedDifficulty");
     } else
     if(hard.classList.contains("selectedMenu")){
+        highScoreText.innerText = `Highscore: ${snakeHighScoreHard}`;
         easy.classList.remove("selectedDifficulty");
         normal.classList.remove("selectedDifficulty");
         hard.classList.add("selectedDifficulty");
         impossible.classList.remove("selectedDifficulty");
     } else
     if(impossible.classList.contains("selectedMenu")){
+        highScoreText.innerText = `Highscore: ${snakeHighScoreImpossible}`;
         easy.classList.remove("selectedDifficulty");
         normal.classList.remove("selectedDifficulty");
         hard.classList.remove("selectedDifficulty");
@@ -200,33 +255,6 @@ function drawGame(){
 
     setTimeout(drawGame,1000/speed)
 }
-
-//difficulties
-easy.addEventListener("click",()=>{
-    easy.classList.add("selectedDifficulty");
-    normal.classList.remove("selectedDifficulty");
-    hard.classList.remove("selectedDifficulty");
-    impossible.classList.remove("selectedDifficulty");
-})
-
-normal.addEventListener("click",()=>{
-    easy.classList.remove("selectedDifficulty");
-    normal.classList.add("selectedDifficulty");
-    hard.classList.remove("selectedDifficulty");
-    impossible.classList.remove("selectedDifficulty");
-})
-hard.addEventListener("click",()=>{
-    easy.classList.remove("selectedDifficulty");
-    normal.classList.remove("selectedDifficulty");
-    hard.classList.add("selectedDifficulty");
-    impossible.classList.remove("selectedDifficulty");
-})
-impossible.addEventListener("click",()=>{
-    easy.classList.remove("selectedDifficulty");
-    normal.classList.remove("selectedDifficulty");
-    hard.classList.remove("selectedDifficulty");
-    impossible.classList.add("selectedDifficulty");
-})
 
 const scoreSound = new Audio("./score.mp3");
 
@@ -320,6 +348,7 @@ function isGameOver(){
     }
     if(gameOver){
         //window.location = "https://www.youtube.com/watch?v=dQw4w9WgXcQ";
+        getHighScore();
         gameOverText.style.opacity = 100;
         document.body.removeEventListener("keydown",keyDownGame);
 
@@ -343,11 +372,6 @@ function isGameOver(){
             keyDownGame("right");
         });
 
-        if(score > snakeHighScore){
-            snakeHighScore = score;
-            localStorage.setItem("snakeHighScore",JSON.stringify(snakeHighScore));
-            highScoreText.innerText = `Highscore: ${snakeHighScore}`;
-        }
         enterButton.addEventListener("click",resetGame);
         document.body.addEventListener("keydown",(e)=>{
             if(e.code === "Space"){
