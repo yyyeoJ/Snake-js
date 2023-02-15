@@ -168,7 +168,21 @@ canvas{
 @keyframes bump {
     0%{transform: translateY(5px)};
     100%{transform: translateY(-5px)};
-}  
+} 
+
+@media (min-width:480px){
+    #controller{
+        top:3% !important;
+        width: 17rem;
+        height: 17rem;
+    }
+    #up,#left,#down,#right,#enter{
+        width:5rem !important;
+        height: 5rem !important;
+    }
+}
+
+
 
 @media (min-width:1025px) {
     body{
