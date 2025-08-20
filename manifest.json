@@ -3,9 +3,9 @@
   "short_name": "Snake",
   "icons": [
     {
-      "src": "icon.jpg",
+      "src": "icon.png",
       "sizes": "192x192",
-      "type": "image/jpg"
+      "type": "image/png"
     }
   ],
   "start_url": "/",
